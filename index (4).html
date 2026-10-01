@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PADMA - Traditional South Indian Taste Since 1970</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #C41E3A;
+            --primary-dark: #8B1528;
+            --primary-light: #E74C5B;
+            --accent-gold: #D4AF37;
+            --accent-green: #2D5016;
+            --accent-orange: #D97706;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --bg-light: #F9F5F0;
+            --bg-white: #FFFFFF;
+            --border-color: #E0DDD8;
+            --success: #22C55E;
+            --error: #EF4444;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-light: #1A1410;
+                --bg-white: #2A2420;
+                --text-dark: #F5F5F5;
+                --text-light: #CCCCCC;
+                --border-color: #3A3430;
+            }
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            color: white;
+            padding: max(16px, env(safe-area-inset-top, 0px)) 20px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-icon-nav {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent-gold);
+            color: var(--primary);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Ornamental Ribbon */
+        .ornamental-ribbon {
+            background: var(--primary);
+            padding: 8px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 80px 48px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border-radius: 24px;
+            padding: 8px 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        .hero-badge::before {
+            content: '🍃';
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .hero-subtext {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        .hero-badges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .badge-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .badge-card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .badge-card-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .badge-card-desc {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Section Headers */
+        .section {
+            padding: 80px 48px;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .achievement-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .achievement-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Why Choose */
+        .why-choose-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .why-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .why-card-icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .why-card-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .why-card-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Menu Section */
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .time-status {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .time-display {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .meal-status {
+            background: var(--success);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .meal-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .meal-tab {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .meal-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .meal-tab:not(.active) {
+            opacity: 0.6;
+        }
+
+        .time-notice {
+            background: #FEF3C7;
+            border-left: 4px solid var(--accent-orange);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .time-notice-icon {
+            font-size: 20px;
+        }
+
+        .time-notice-text {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Menu Grid */
+        .menu-category {
+            margin-bottom: 48px;
+        }
+
+        .menu-category-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .menu-item.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .menu-item-content {
+            padding: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+
+        .menu-item-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .veg-icon {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--accent-green);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .veg-icon::after {
+            content: '•';
+            color: var(--accent-green);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .menu-item-price {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .menu-item-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .menu-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .menu-item-cal {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .add-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-light);
+            border-radius: 6px;
+            padding: 4px 8px;
+        }
+
+        .quantity-control button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: bold;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-control span {
+            min-width: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Checkout Section */
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .cart-summary {
+            background: var(--bg-light);
+            padding: 32px;
+            border-radius: 12px;
+        }
+
+        .cart-items-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .cart-item-meta {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .cart-item-price {
+            text-align: right;
+        }
+
+        .cart-item-quantity {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .cart-item-total {
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-cart-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .bill-summary {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid white;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .bill-row.total {
+            border-top: 1px solid white;
+            padding-top: 12px;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .delivery-note {
+            background: white;
+            border-left: 4px solid var(--accent-green);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delivery-note-icon {
+            font-size: 16px;
+        }
+
+        /* Form */
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .form-input, .form-textarea {
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .payment-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .payment-option {
+            position: relative;
+        }
+
+        .payment-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--bg-light);
+        }
+
+        .payment-option input[type="radio"]:checked + .payment-option-label {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .payment-radio {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .payment-option input[type="radio"]:checked ~ .payment-option-label .payment-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: inset 0 0 0 4px white;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-option-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .payment-option-desc {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .upi-details {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .upi-details.visible {
+            display: block;
+        }
+
+        .upi-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .upi-row:last-child {
+            border-bottom: none;
+        }
+
+        .upi-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .upi-value {
+            color: var(--primary);
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .qr-section {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 12px;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .cod-note {
+            background: #E8F5E9;
+            border-left: 4px solid var(--accent-green);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .cod-note.visible {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .cod-note-icon {
+            font-size: 16px;
+        }
+
+        /* Submit Button */
+        .submit-section {
+            margin-top: 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Order Confirmation */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            padding-top: env(safe-area-inset-top, 20px);
+        }
+
+        .confirmation-modal.visible {
+            display: flex;
+        }
+
+        .confirmation-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .confirmation-icon {
+            font-size: 64px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .confirmation-subtitle {
+            font-size: 16px;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+
+        .confirmation-details {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .confirmation-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid white;
+        }
+
+        .confirmation-row:last-child {
+            border-bottom: none;
+        }
+
+        .confirmation-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .confirmation-value {
+            color: var(--text-light);
+            text-align: right;
+        }
+
+        .confirmation-value.highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .confirmation-close-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .confirmation-close-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stars {
+            font-size: 14px;
+            color: #FDB022;
+            margin-bottom: 16px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .reviewer-info {
+            display: flex;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .reviewer-meta {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .reviewer-role {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-icon {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.visible {
+            max-height: 400px;
+        }
+
+        .faq-answer-content {
+            padding: 0 20px 20px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Location Section */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .location-icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .location-content h3 {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .location-content p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .map-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 48px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: env(safe-area-inset-top, 0px);
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            display: none;
+            flex-direction: column;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .mobile-menu.visible {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: white;
+            padding: 16px 20px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Sticky Cart Button (Mobile) */
+        .sticky-cart-btn {
+            display: none;
+            position: fixed;
+            bottom: max(20px, env(safe-area-inset-bottom, 20px));
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 500;
+        }
+
+        .sticky-cart-btn.visible {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 60px 32px;
+            }
+
+            .achievements {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-choose-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-menu-toggle {
+                display: block;
+            }
+
+            .sticky-cart-btn.visible {
+                display: flex;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .achievements {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-badges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-container {
+                padding: 24px 20px;
+                gap: 24px;
+            }
+
+            .location-grid {
+                gap: 24px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .meal-tabs {
+                flex-direction: column;
+            }
+
+            .confirmation-content {
+                padding: 24px;
+            }
+
+            .nav {
+                padding: max(12px, env(safe-area-inset-top, 0px)) 16px 12px;
+            }
+
+            .menu-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .time-status {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .time-display, .meal-status {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-container {
+                padding: 0;
+            }
+
+            .nav-logo {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">🍛 PADMA</div>
+        <ul class="nav-links">
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+        <button class="nav-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <div class="cart-icon-nav" onclick="scrollToCheckout()">
+            🛒
+            <div class="cart-count" id="navCartCount">0</div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#location">Location</a>
+    </div>
+
+    <!-- Ornamental Ribbon -->
+    <div class="ornamental-ribbon">
+        ◆ TRADITIONAL SOUTH INDIAN CUISINE ◆
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🌿 Est. 1970</div>
+            <h1>Traditional South Indian Taste, Served Fresh Since 1970</h1>
+            <p class="hero-tagline">From morning tiffin to hearty lunches and delicious dinners, Padma brings authentic South Indian flavours to your table.</p>
+            <p class="hero-subtext">Freshly prepared. Traditionally inspired. Made for every meal.</p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">
+                    Order Now
+                    <span>→</span>
+                </button>
+                <a href="#location" class="btn btn-secondary">View Location</a>
+            </div>
+            <div class="hero-badges-grid">
+                <div class="badge-card">
+                    <div class="badge-card-icon">📅</div>
+                    <div class="badge-card-title">Since 1970</div>
+                    <div class="badge-card-desc">Serving traditional South Indian food</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-card-icon">🕐</div>
+                    <div class="badge-card-title">3 Meal Times</div>
+                    <div class="badge-card-desc">Tiffin • Lunch • Dinner</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-card-icon">🏍️</div>
+                    <div class="badge-card-title">15 KM Delivery</div>
+                    <div class="badge-card-desc">Fast home delivery</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-card-icon">✨</div>
+                    <div class="badge-card-title">Freshly Prepared</div>
+                    <div class="badge-card-desc">No preservatives, pure ghee</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23D4AF37' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='%23C41E3A' text-anchor='middle' dominant-baseline='middle'%3EPADMA Feast%3C/text%3E%3C/svg%3E" alt="PADMA Traditional South Indian Feast">
+            <div class="hero-image-badge">
+                ⭐ Award Winning
+                <br>Since 1970
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="section">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">OUR LEGACY</div>
+            <h2 class="section-title">A Taste That Has Been Loved for Generations</h2>
+            <p class="section-subtitle">Fifty-plus years of culinary tradition, trust, and love on every plate.</p>
+        </div>
+        <div class="achievements">
+            <div class="achievement-card">
+                <div class="achievement-icon">📅</div>
+                <div class="achievement-title">Since 1970</div>
+                <div class="achievement-desc">Serving traditional South Indian food with timeless culinary discipline.</div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🕐</div>
+                <div class="achievement-title">3 Meal Times</div>
+                <div class="achievement-desc">Morning Tiffin • Afternoon Lunch & Thali • Night Dinner Parottas.</div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🏍️</div>
+                <div class="achievement-title">15 KM Delivery</div>
+                <div class="achievement-desc">Fast, temperature-insulated home delivery around Mannachanallur.</div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">✨</div>
+                <div class="achievement-title">Freshly Prepared</div>
+                <div class="achievement-desc">Ground fresh daily. No preservatives, pure cow ghee and cold-pressed oils.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Padma -->
+    <section class="section">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">WHY CHOOSE US</div>
+            <h2 class="section-title">Why Choose Padma?</h2>
+            <p class="section-subtitle">What makes us unique in every single order.</p>
+        </div>
+        <div class="why-choose-cards">
+            <div class="why-card">
+                <div class="why-card-icon-box">🥘</div>
+                <div class="why-card-title">Since 1970</div>
+                <div class="why-card-desc">A proud legacy of serving authentic South Indian flavours to generations of loyal families across the region.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon-box">⏰</div>
+                <div class="why-card-title">Fresh Every Day</div>
+                <div class="why-card-desc">Every meal is made to order. Rice ground, sambar cooked, dosa prepared—all fresh, all today, all for you.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon-box">🌿</div>
+                <div class="why-card-title">100% Pure Ingredients</div>
+                <div class="why-card-desc">Only the finest, locally-sourced ingredients. Pure ghee, cold-pressed oils, no preservatives, no shortcuts.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon-box">❤️</div>
+                <div class="why-card-title">Loved Locally</div>
+                <div class="why-card-desc">Generations of families rely on us for authentic taste. Every review is proof of our unwavering commitment to quality.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="menu-header">
+            <div>
+                <div class="section-label">ORDER NOW</div>
+                <h2 class="section-title">What Are You Craving?</h2>
+                <p class="section-subtitle">Select from our curated menu. Orders open based on meal times.</p>
+            </div>
+            <div class="time-status">
+                <div class="time-display">🕐 <span id="currentTime">--:--</span></div>
+                <div class="meal-status" id="mealStatus">Determining...</div>
+            </div>
+        </div>
+
+        <div class="time-notice" id="timeNotice" style="display: none;">
+            <span class="time-notice-icon">ℹ️</span>
+            <span class="time-notice-text" id="timeNoticeText"></span>
+        </div>
+
+        <div class="meal-tabs">
+            <button class="meal-tab active" data-meal="morning" onclick="switchMeal('morning')">
+                🌅 Morning Tiffin
+                <br><small>6:30 AM – 11:00 AM</small>
+            </button>
+            <button class="meal-tab" data-meal="lunch" onclick="switchMeal('lunch')">
+                ☀️ Lunch
+                <br><small>12:00 PM – 3:30 PM</small>
+            </button>
+            <button class="meal-tab" data-meal="dinner" onclick="switchMeal('dinner')">
+                🌙 Dinner
+                <br><small>6:30 PM – 10:30 PM</small>
+            </button>
+        </div>
+
+        <div id="menuContainer"></div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="section" style="scroll-margin-top: 100px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">COMPLETE YOUR FEAST</div>
+            <h2 class="section-title">Complete Your Feast</h2>
+            <p class="section-subtitle">Review your order and proceed to checkout</p>
+        </div>
+
+        <div class="checkout-container">
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--text-dark);">🛒 Your Order</h3>
+                    <button style="background: none; border: none; color: var(--primary); cursor: pointer; font-weight: 600; text-decoration: underline; padding: 0;" onclick="clearCart()">Clear</button>
+                </div>
+                <div class="cart-items-list" id="cartItemsList">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🍽️</div>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 12px; margin-top: 8px;">Add items from the menu to get started</p>
+                    </div>
+                </div>
+                <div class="bill-summary">
+                    <div class="bill-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Delivery (within 15 KM)</span>
+                        <span id="deliveryCharge">Free</span>
+                    </div>
+                    <div class="bill-row total">
+                        <span>Total</span>
+                        <span id="total">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <form class="checkout-form" onsubmit="handleCheckout(event)">
+                <div style="margin-bottom: 16px;">
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text-dark);">📦 Customer Delivery Details</h3>
+                    <p style="font-size: 13px; color: var(--text-light);">Hot food prepared upon order verification.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-input" id="customerName" placeholder="e.g. Meenakshi Sundaram" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" class="form-input" id="customerPhone" placeholder="+91 98765 43210" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Delivery Address in Mannachanallur / Trichy *</label>
+                    <textarea class="form-textarea" id="customerAddress" placeholder="Street name, landmark (e.g. Near Taluk Office, West Car St)" required></textarea>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <div class="payment-title">💳 Choose Your Payment Method</div>
+
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cod" checked onchange="updatePaymentDisplay()">
+                            <div class="payment-option-label">
+                                <div class="payment-radio"></div>
+                                <div class="payment-info">
+                                    <div class="payment-option-title">💵 Cash on Delivery</div>
+                                    <div class="payment-option-desc">Pay when you receive your order</div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="upi" onchange="updatePaymentDisplay()">
+                            <div class="payment-option-label">
+                                <div class="payment-radio"></div>
+                                <div class="payment-info">
+                                    <div class="payment-option-title">📱 UPI / Google Pay</div>
+                                    <div class="payment-option-desc">Quick and secure payment</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="cod-note" id="codNote">
+                        <span class="cod-note-icon">✓</span>
+                        <span>Home delivery available within 15 KM. Pay when your order arrives.</span>
+                    </div>
+
+                    <div class="upi-details" id="upiDetails">
+                        <div class="upi-row">
+                            <span class="upi-label">UPI ID:</span>
+                            <span class="upi-value">padma@upi</span>
+                        </div>
+                        <div class="upi-row">
+                            <span class="upi-label">Phone:</span>
+                            <span class="upi-value">+91 98765 43210</span>
+                        </div>
+                        <div class="qr-section">
+                            <div class="qr-code">📲</div>
+                            <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">Demo QR Code Area</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span>Place Order</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section" id="reviews">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">TESTIMONIALS</div>
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Hear from hundreds of satisfied diners across Mannachanallur</p>
+        </div>
+        <div class="reviews">
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"The dosa and sambar were really good. Everything arrived hot and fresh."</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">R</div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-name">Ramesh</div>
+                        <div class="reviewer-role">Regular Customer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"Ordered lunch for the family. The food was tasty and the delivery was convenient."</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">P</div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-name">Priya</div>
+                        <div class="reviewer-role">First Time Buyer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="review-text">"A simple, satisfying South Indian meal. The parotta and kurma were my favourites."</div>
+                <div class="reviewer-info">
+                    <div class="reviewer-avatar">V</div>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-name">Vikram</div>
+                        <div class="reviewer-role">Food Enthusiast</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">SUPPORT</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you offer home delivery?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Yes! We deliver hot, fresh food within 15 KM of Mannachanallur. Orders are prepared after confirmation and delivered in insulated containers to maintain temperature and quality.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What payment methods do you accept?</span>
+                    <div class="faq-icon">▼</div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">We accept both Cash on Delivery and UPI/Google Pay. Pay when your order arrives or securely through UPI before delivery. Choose what's convenient for you.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What are your meal service hours?</span>
+                    <div class="faq-icon">▼</div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Morning Tiffin: 6:30 AM – 11:00 AM | Lunch: 12:00 PM – 3:30 PM | Dinner: 6:30 PM – 10:30 PM. Outside these hours, the menu appears faded and orders cannot be placed.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I customize or add special requests?</span>
+                    <div class="faq-icon">▼</div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Absolutely! Call us at +91 98765 43210 after placing your order to discuss any special requirements or customizations. Our team will do their best to accommodate your requests.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section" id="location">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="section-label">VISIT US</div>
+            <h2 class="section-title">Visit Padma</h2>
+            <p class="section-subtitle">Find us in the heart of Mannachanallur</p>
+        </div>
+        <div class="location-grid">
+            <div class="location-info">
+                <div class="location-item">
+                    <div class="location-icon-box">📍</div>
+                    <div class="location-content">
+                        <h3>Our Location</h3>
+                        <p>Mannachanallur, Trichy<br>Tamil Nadu, India</p>
+                    </div>
+                </div>
+                <div class="location-item">
+                    <div class="location-icon-box">🕐</div>
+                    <div class="location-content">
+                        <h3>Opening Hours</h3>
+                        <p>6:00 AM – 10:30 PM Daily<br>Serving three meal times throughout the day</p>
+                    </div>
+                </div>
+                <div class="location-item">
+                    <div class="location-icon-box">📞</div>
+                    <div class="location-content">
+                        <h3>Call Us</h3>
+                        <p>+91 98765 43210<br>For orders, queries, or special requests</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="document.getElementById('customerPhone').focus()">
+                    📞 Call to Order
+                </button>
+            </div>
+            <div class="map-card">
+                <div class="map-placeholder">🗺️</div>
+                <h3 style="margin-bottom: 8px; color: var(--text-dark); font-weight: 600;">Mannachanallur, Trichy</h3>
+                <p style="color: var(--text-light); font-size: 14px;">Home delivery available within 15 KM radius</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text" style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">🍛 PADMA</div>
+            <div class="footer-text">Traditional South Indian Taste — Since 1970</div>
+            <div class="footer-links">
+                <a href="#menu">Menu</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#location">Location</a>
+            </div>
+            <div class="footer-text" style="font-size: 13px; opacity: 0.7;">© 2024 PADMA Restaurant. All rights reserved.<br>Mannachanallur, Trichy | Phone: +91 98765 43210</div>
+        </div>
+    </footer>
+
+    <!-- Order Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">✅</div>
+            <div class="confirmation-title">Order Received!</div>
+            <div class="confirmation-subtitle">Thank you for ordering from Padma</div>
+            <div class="confirmation-details" id="confirmationDetails"></div>
+            <button class="confirmation-close-btn" onclick="closeConfirmation()">
+                ← Back to Menu
+            </button>
+        </div>
+    </div>
+
+    <!-- Sticky Cart Button (Mobile) -->
+    <button class="sticky-cart-btn" id="stickyCartBtn" onclick="scrollToCheckout()">🛒</button>
+
+    <script>
+        // Google Apps Script URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxepUzBors8jqEVyQ9LJK0g6AEN5MC9esG30J6R-0xcLq1_5dPOpMl4_gG43MFB3JlX/exec';
+
+        // Menu Data
+        const menuData = {
+            morning: [
+                { id: 1, name: 'Idli', desc: 'Soft steamed South Indian rice cakes served with sambar & chutneys', price: 50, veg: true },
+                { id: 2, name: 'Gundum', desc: 'Spiced steamed cakes tempered with cumin, pepper & ginger', price: 45, veg: true },
+                { id: 3, name: 'Puttu', desc: 'Wide plate idli topped with aromatic podi and pure ghee', price: 55, veg: true },
+                { id: 4, name: 'Uttapam', desc: 'Crisp outside, fluffy inside fermented rice dumplings', price: 50, veg: true },
+                { id: 5, name: 'Dosa', desc: 'Golden crispy fermented crepe served with trio chutneys & sambar', price: 70, veg: true },
+                { id: 6, name: 'Upma', desc: 'Thick griddle pancake topped with shallots & coriander', price: 40, veg: true },
+                { id: 7, name: 'Idiyappam', desc: 'Delicate steamed rice string hoppers with coconut milk', price: 45, veg: true },
+                { id: 8, name: 'Appam', desc: 'Bowl-shaped fermented rice hopper with fresh coconut milk', price: 50, veg: true },
+                { id: 9, name: 'Parotta', desc: 'Flaky layered griddle flatbread served with kurma', price: 60, veg: true },
+                { id: 10, name: 'Dhal', desc: 'Golden crispy fermented crepe served with trio chutneys & sambar', price: 40, veg: true },
+            ],
+            lunch: [
+                { id: 11, name: 'Masala Dosa', desc: 'Melting ghee rice and moong lentil porridge with cashews & pepper', price: 80, veg: true },
+                { id: 12, name: 'Pesarattu', desc: 'Roasted semolina cooked with ginger, mustard & curry leaves', price: 70, veg: true },
+                { id: 13, name: 'Khichdi', desc: 'Roasted vermicelli upma with garden vegetables', price: 60, veg: true },
+                { id: 14, name: 'Puri', desc: 'Puffed golden wholewheat pooris with spiced potato masala', price: 65, veg: true },
+                { id: 15, name: 'Sambar Rice', desc: 'Crispy golden urad dal donut with fluffy interior', price: 75, veg: true },
+                { id: 16, name: 'Bisibelebath', desc: 'Crunchy chana dal spiced patties', price: 80, veg: true },
+                { id: 17, name: 'Rasam Vada', desc: 'Flattened rice flakes tempered with spices & peanuts', price: 55, veg: true },
+                { id: 18, name: 'Curd Rice', desc: 'Soft yogurt rice with seasonings and garnish', price: 70, veg: true },
+                { id: 19, name: 'Lemon Rice', desc: 'Zesty citrus rice with peanuts and spices', price: 65, veg: true },
+                { id: 20, name: 'Thali', desc: 'Complete meal with rice, sambar, rasam & vegetables', price: 120, veg: true },
+            ],
+            dinner: [
+                { id: 21, name: 'Ghee Roast', desc: 'Melting ghee rice and moong lentil porridge with cashews & pepper', price: 90, veg: true },
+                { id: 22, name: 'Semiya Upma', desc: 'Roasted semolina cooked with ginger, mustard & curry leaves', price: 75, veg: true },
+                { id: 23, name: 'Wheat Upma', desc: 'Roasted vermicelli upma with garden vegetables', price: 70, veg: true },
+                { id: 24, name: 'Stuffed Parotta', desc: 'Puffed golden wholewheat pooris with spiced potato masala', price: 100, veg: true },
+                { id: 25, name: 'Plain Parotta', desc: 'Crispy golden urad dal donut with fluffy interior', price: 80, veg: true },
+                { id: 26, name: 'Parotta with Kurma', desc: 'Crunchy chana dal spiced patties', price: 110, veg: true },
+                { id: 27, name: 'Alu Parotta', desc: 'Flattened rice flakes tempered with spices & peanuts', price: 85, veg: true },
+                { id: 28, name: 'Gobi Parotta', desc: 'Flaky layered griddle flatbread served with kurma', price: 95, veg: true },
+                { id: 29, name: 'Paneer Parotta', desc: 'Rich cottage cheese parotta with special masala', price: 105, veg: true },
+                { id: 30, name: 'Egg Parotta', desc: 'Classic egg preparation with layers of parotta', price: 100, veg: false },
+            ]
+        };
+
+        // Cart State
+        let cart = [];
+        let currentMeal = 'morning';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMenu();
+            updateClock();
+            setInterval(updateClock, 1000);
+            loadCartFromStorage();
+            updateCartDisplay();
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
+            updateMealStatus();
+        }
+
+        function getMealStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const timeInMinutes = hours * 60 + minutes;
+
+            const morningStart = 6 * 60 + 30; // 6:30
+            const morningEnd = 11 * 60; // 11:00
+            const lunchStart = 12 * 60; // 12:00
+            const lunchEnd = 15 * 60 + 30; // 3:30
+            const dinnerStart = 18 * 60 + 30; // 6:30
+            const dinnerEnd = 22 * 60 + 30; // 10:30
+
+            if (timeInMinutes >= morningStart && timeInMinutes < morningEnd) {
+                return { active: 'morning', status: 'Morning Tiffin Open', next: 'Lunch at 12:00 PM' };
+            } else if (timeInMinutes >= lunchStart && timeInMinutes < lunchEnd) {
+                return { active: 'lunch', status: 'Lunch Time', next: 'Dinner at 6:30 PM' };
+            } else if (timeInMinutes >= dinnerStart && timeInMinutes < dinnerEnd) {
+                return { active: 'dinner', status: 'Dinner Service', next: 'Morning Tiffin at 6:30 AM' };
+            } else if (timeInMinutes >= morningEnd && timeInMinutes < lunchStart) {
+                return { active: null, status: '⏳ Lunch Opens Soon', notice: 'Lunch ordering opens at 12:00 PM.' };
+            } else if (timeInMinutes >= lunchEnd && timeInMinutes < dinnerStart) {
+                return { active: null, status: '⏳ Dinner Opens Soon', notice: 'Dinner ordering opens at 6:30 PM.' };
+            } else {
+                return { active: null, status: '🌙 Closed', notice: 'Morning Tiffin opens at 6:30 AM.' };
+            }
+        }
+
+        function updateMealStatus() {
+            const status = getMealStatus();
+            const statusBadge = document.getElementById('mealStatus');
+            const timeNotice = document.getElementById('timeNotice');
+            const timeNoticeText = document.getElementById('timeNoticeText');
+
+            statusBadge.textContent = status.status;
+
+            if (status.notice) {
+                timeNotice.style.display = 'flex';
+                timeNoticeText.textContent = status.notice;
+            } else {
+                timeNotice.style.display = 'none';
+            }
+
+            // Update menu disabled state
+            const mealTabs = document.querySelectorAll('.meal-tab');
+            mealTabs.forEach(tab => {
+                const meal = tab.getAttribute('data-meal');
+                if (status.active === meal) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            renderMenu();
+        }
+
+        function switchMeal(meal) {
+            currentMeal = meal;
+            renderMenu();
+            const tabs = document.querySelectorAll('.meal-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.meal-tab').classList.add('active');
+        }
+
+        function renderMenu() {
+            const status = getMealStatus();
+            const container = document.getElementById('menuContainer');
+            const items = menuData[currentMeal];
+
+            let html = `<div class="menu-category">
+                <div class="menu-category-title">
+                    ${currentMeal === 'morning' ? '🌅 Morning Tiffin' : currentMeal === 'lunch' ? '☀️ Lunch Specials' : '🌙 Dinner Delights'}
+                </div>
+                <div class="menu-grid">`;
+
+            items.forEach(item => {
+                const isDisabled = status.active !== currentMeal;
+                const cartItem = cart.find(c => c.id === item.id);
+                const quantity = cartItem ? cartItem.quantity : 0;
+
+                html += `
+                    <div class="menu-item ${isDisabled ? 'disabled' : ''}">
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <div class="menu-item-name">
+                                    <div class="veg-icon"></div>
+                                    ${item.name}
+                                </div>
+                                <div class="menu-item-price">₹${item.price}</div>
+                            </div>
+                            <div class="menu-item-desc">${item.desc}</div>
+                            <div class="menu-item-footer">
+                                <div class="menu-item-cal">📍 Freshly prepared</div>
+                                ${quantity > 0 ? `
+                                    <div class="quantity-control">
+                                        <button type="button" onclick="updateQuantity(${item.id}, -1)">−</button>
+                                        <span>${quantity}</span>
+                                        <button type="button" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                    </div>
+                                ` : `
+                                    <button class="add-btn" onclick="addToCart(${item.id}, '${item.name}', ${item.price})" ${isDisabled ? 'disabled' : ''}>
+                                        Add to Cart
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function addToCart(id, name, price) {
+            const status = getMealStatus();
+            if (status.active !== currentMeal) {
+                alert('This meal is not available at the moment.');
+                return;
+            }
+
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1, meal: currentMeal });
+            }
+            saveCartToStorage();
+            updateCartDisplay();
+            renderMenu();
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(c => c.id !== id);
+                }
+                saveCartToStorage();
+                updateCartDisplay();
+                renderMenu();
+            }
+        }
+
+        function clearCart() {
+            if (cart.length === 0) {
+                alert('Your cart is already empty!');
+                return;
+            }
+            if (confirm('Are you sure you want to clear your cart?')) {
+                cart = [];
+                saveCartToStorage();
+                updateCartDisplay();
+                renderMenu();
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const subtotal = document.getElementById('subtotal');
+            const deliveryCharge = document.getElementById('deliveryCharge');
+            const total = document.getElementById('total');
+            const navCartCount = document.getElementById('navCartCount');
+            const stickyCartBtn = document.getElementById('stickyCartBtn');
+
+            navCartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            stickyCartBtn.classList.toggle('visible', cart.length > 0);
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🍽️</div>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 12px; margin-top: 8px;">Add items from the menu to get started</p>
+                    </div>
+                `;
+                subtotal.textContent = '₹0';
+                deliveryCharge.textContent = 'Free';
+                total.textContent = '₹0';
+            } else {
+                let html = '';
+                let subtotalAmount = 0;
+
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotalAmount += itemTotal;
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-meta">₹${item.price} × ${item.quantity}</div>
+                            </div>
+                            <div class="cart-item-price">
+                                <div class="cart-item-quantity">₹${itemTotal}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                cartItemsList.innerHTML = html;
+                subtotal.textContent = `₹${subtotalAmount}`;
+                deliveryCharge.textContent = 'Free';
+                total.textContent = `₹${subtotalAmount}`;
+            }
+        }
+
+        function saveCartToStorage() {
+            localStorage.setItem('padmaCart', JSON.stringify(cart));
+        }
+
+        function loadCartFromStorage() {
+            const stored = localStorage.getItem('padmaCart');
+            if (stored) {
+                cart = JSON.parse(stored);
+            }
+        }
+
+        function updatePaymentDisplay() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const codNote = document.getElementById('codNote');
+            const upiDetails = document.getElementById('upiDetails');
+
+            if (paymentMethod === 'cod') {
+                codNote.classList.add('visible');
+                upiDetails.classList.remove('visible');
+            } else {
+                codNote.classList.remove('visible');
+                upiDetails.classList.add('visible');
+            }
+        }
+
+        function scrollToCheckout() {
+            const checkoutSection = document.querySelector('.checkout-container');
+            checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleCheckout(e) {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                alert('Please add items to your cart before checking out.');
+                return;
+            }
+
+            const customerName = document.getElementById('customerName').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+            const customerAddress = document.getElementById('customerAddress').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (!customerName || !customerPhone || !customerAddress) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            // Prepare order data
+            const meals = [...new Set(cart.map(c => c.meal))].join(', ');
+            const items = cart.map(c => c.name).join('; ');
+            const quantities = cart.map(c => c.quantity).join('; ');
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            const orderData = {
+                customerName: customerName,
+                phone: customerPhone,
+                deliveryAddress: customerAddress,
+                meal: meals,
+                items: items,
+                quantities: quantities,
+                totalAmount: totalAmount.toString(),
+                paymentMethod: paymentMethod
+            };
+
+            // Send to Google Apps Script
+            const url = SCRIPT_URL + '?' + new URLSearchParams(orderData).toString();
+
+            fetch(url, {
+                method: 'GET',
+                mode: 'no-cors'
+            }).then(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Place Order</span><span>→</span>';
+                showConfirmation(customerName, totalAmount, paymentMethod);
+                cart = [];
+                saveCartToStorage();
+                updateCartDisplay();
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('customerAddress').value = '';
+            }).catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Place Order</span><span>→</span>';
+                showConfirmation(customerName, totalAmount, paymentMethod);
+                cart = [];
+                saveCartToStorage();
+                updateCartDisplay();
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('customerAddress').value = '';
+            });
+        }
+
+        function showConfirmation(name, total, paymentMethod) {
+            const orderId = 'ORD-' + Date.now();
+            const confirmationDetails = document.getElementById('confirmationDetails');
+
+            let detailsHtml = `
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Order ID</span>
+                    <span class="confirmation-value highlight">${orderId}</span>
+                </div>
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Customer Name</span>
+                    <span class="confirmation-value">${name}</span>
+                </div>
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Items Ordered</span>
+                    <span class="confirmation-value">${cart.length} items</span>
+                </div>
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Total Amount</span>
+                    <span class="confirmation-value highlight">₹${total}</span>
+                </div>
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Payment Method</span>
+                    <span class="confirmation-value">${paymentMethod === 'cod' ? '💵 Cash on Delivery' : '📱 UPI/Google Pay'}</span>
+                </div>
+                <div class="confirmation-row">
+                    <span class="confirmation-label">Status</span>
+                    <span class="confirmation-value">✓ Received</span>
+                </div>
+            `;
+
+            confirmationDetails.innerHTML = detailsHtml;
+            document.getElementById('confirmationModal').classList.add('visible');
+        }
+
+        function closeConfirmation() {
+            document.getElementById('confirmationModal').classList.remove('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleFAQ(button) {
+            button.classList.toggle('active');
+            const answer = button.nextElementSibling;
+            answer.classList.toggle('visible');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('visible');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('visible');
+            });
+        });
+
+        // Initialize payment display
+        updatePaymentDisplay();
+    </script>
+</body>
+</html>
